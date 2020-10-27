@@ -45,7 +45,7 @@ After processing the data, you can train and validate your model using the
 following command:
 
 ```bash
-python main.py data_folder --input type_of_input
+python beam_train_model.py data_folder --input type_of_input
 ```
 
 * Parameters 
@@ -55,12 +55,18 @@ python main.py data_folder --input type_of_input
   * (**Optional**) *--input* is a list of the types of data that you want to feed into your model. You can pass up to 3 different types, the possible ones are : *img, coord and lidar*. In the absence of the *--input* parameter, the coord data will be used as a default
   * (**Optional**) *--plots* plot the accuracy and validation accuracy of your model.
 
-##### Usage example
+##### Model is trained with Following Usage example
 To train a model that uses *images, lidar and coordinates* use the command:
 ```bash
-python main.py data --input img lidar coord
+python beam_train_model.py data_folder --input lidar img coord
 ```
 
+##### Saving the Model
+Model will be saved with the file name my_saved_model.h5. This file will be saved at the same path where beam_train_model.py will be there.
 
+#### Predicting the Model
+For predicting the results from the saved model. we need to use beam_test_model.py. This will load the my_saved_model.h5 file and predict the Output.
+
+The predicted Output will be saved in an excel sheet beam_test_pred.csv. This file will be placed at the same path where beam_test_model.py.
 
 ##### Details related to Test Data
