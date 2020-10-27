@@ -149,6 +149,7 @@ if 'img' in args.input:
 
     img_train_input_shape = X_img_train.shape
 
+
 if 'lidar' in args.input:
     ###############################################################################
     # LIDAR configuration
@@ -317,7 +318,8 @@ else:
         hist = model.fit(X_lidar_train,y_train, 
         validation_data=(X_lidar_validation, y_validation),epochs=num_epochs,batch_size=batch_size)
 
-model.save(data_dir+'my_saved_model') 
+filename='my_saved_model'+'.h5'
+model.save(filename) 
 
 if args.plots:
     import matplotlib.pyplot as plt
