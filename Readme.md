@@ -70,3 +70,9 @@ For predicting the results from the saved model. we need to use beam_test_model.
 The predicted Output will be saved in an excel sheet beam_test_pred.csv. This file will be placed at the same path where beam_test_model.py.
 
 ##### Details related to Test Data
+
+It is assumed that test data will be placed inside the \data_folder\baseline_data.
+
+So in the MAIN folder there is a sub-folder named data_folder (which is mentioned above). Inside these data_folder there will be a sub folder named baseline_data. 
+Inside this all the data i.e. Cord,Lidar,Image corresponding to s010 will be placed in the subsequent sub folders.
+
