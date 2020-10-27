@@ -60,3 +60,7 @@ To train a model that uses *images, lidar and coordinates* use the command:
 ```bash
 python main.py data --input img lidar coord
 ```
+
+
+
+##### Details related to Test Data
