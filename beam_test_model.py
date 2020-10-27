@@ -21,7 +21,7 @@ http://cs231n.github.io/convolutional-networks/
 import csv
 import tensorflow as tf
 from tensorflow.keras import metrics
-from tensorflow.keras.models import model_from_json,Model
+from tensorflow.keras.models import model_from_json,Model,load_model
 from tensorflow.keras.layers import Dense,concatenate,Average
 from tensorflow.keras.losses import categorical_crossentropy
 from tensorflow.keras.optimizers import Adadelta,Adam
@@ -42,8 +42,8 @@ import argparse
 def top_10_accuracy(y_true,y_pred):
     return metrics.top_k_categorical_accuracy(y_true,y_pred,k=10)
 
-def top_50_accuracy(y_true,y_pred):
-    return metrics.top_k_categorical_accuracy(y_true,y_pred,k=50)
+'''def top_50_accuracy(y_true,y_pred):
+    return metrics.top_k_categorical_accuracy(y_true,y_pred,k=50)'''
 
 def sub2ind(array_shape, rows, cols):
     ind = rows*array_shape[1] + cols
@@ -214,9 +214,12 @@ batch_size = 32
 validationFraction = 0.2 #from 0 to 1
 modelHand = ModelHandler()
 opt = Adam()
+print("Model to be loaded....")
+model = load_model('my_saved_model.h5')
 
-model = Model.load_model('my_saved_model.h5')
-
+print("Model Summary is:")
+model.summary()
+print("Model loaded....")
 if multimodal == 2:
     if 'coord' in args.input and 'lidar' in args.input:
         print("Predicting the model on test data......")

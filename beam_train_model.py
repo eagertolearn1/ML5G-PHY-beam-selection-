@@ -220,8 +220,7 @@ if multimodal == 2:
         model.compile(loss=categorical_crossentropy,
                     optimizer=opt,
                     metrics=[metrics.categorical_accuracy,
-                            metrics.top_k_categorical_accuracy,
-                            top_50_accuracy])
+                            metrics.top_k_categorical_accuracy])
         model.summary()
         hist = model.fit([X_coord_train,X_lidar_train],y_train, 
         validation_data=([X_coord_validation, X_lidar_validation], y_validation),epochs=num_epochs,batch_size=batch_size)
@@ -233,8 +232,7 @@ if multimodal == 2:
         model.compile(loss=categorical_crossentropy,
                     optimizer=opt,
                     metrics=[metrics.categorical_accuracy,
-                            metrics.top_k_categorical_accuracy,
-                            top_50_accuracy])
+                            metrics.top_k_categorical_accuracy])
         model.summary()
         hist = model.fit([X_coord_train,X_img_train],y_train,
         validation_data=([X_coord_validation, X_img_validation], y_validation), epochs=num_epochs,batch_size=batch_size)
@@ -246,8 +244,7 @@ if multimodal == 2:
         model.compile(loss=categorical_crossentropy,
                     optimizer=opt,
                     metrics=[metrics.categorical_accuracy,
-                            metrics.top_k_categorical_accuracy,
-                            top_50_accuracy])
+                            metrics.top_k_categorical_accuracy])
         model.summary()
         hist = model.fit([X_lidar_train,X_img_train],y_train, 
         validation_data=([X_lidar_validation, X_img_validation], y_validation), epochs=num_epochs,batch_size=batch_size)
@@ -277,8 +274,7 @@ elif multimodal == 3:
     model.compile(loss=categorical_crossentropy,
                 optimizer=opt,
                 metrics=[metrics.categorical_accuracy,
-                        metrics.top_k_categorical_accuracy,
-                        top_50_accuracy])
+                        metrics.top_k_categorical_accuracy])
     model.summary()
     hist = model.fit([X_lidar_train,X_img_train,X_coord_train],y_train,
             validation_data=([X_lidar_validation, X_img_validation, X_coord_validation], y_validation),
@@ -290,8 +286,7 @@ else:
         model.compile(loss=categorical_crossentropy,
                             optimizer=opt,
                             metrics=[metrics.categorical_accuracy,
-                                    metrics.top_k_categorical_accuracy,
-                                    top_50_accuracy])
+                                    metrics.top_k_categorical_accuracy])
         model.summary()
         hist = model.fit(X_coord_train,y_train, 
         validation_data=(X_coord_validation, y_validation),epochs=num_epochs,batch_size=batch_size)
@@ -301,8 +296,7 @@ else:
         model.compile(loss=categorical_crossentropy,
                     optimizer=opt,
                     metrics=[metrics.categorical_accuracy,
-                            metrics.top_k_categorical_accuracy,
-                            top_50_accuracy])
+                            metrics.top_k_categorical_accuracy])
         model.summary()
         hist = model.fit(X_img_train,y_train, 
         validation_data=(X_img_validation, y_validation),epochs=num_epochs,batch_size=batch_size)
@@ -312,8 +306,7 @@ else:
         model.compile(loss=categorical_crossentropy,
                     optimizer=opt,
                     metrics=[metrics.categorical_accuracy,
-                            metrics.top_k_categorical_accuracy,
-                            top_50_accuracy])
+                            metrics.top_k_categorical_accuracy])
         model.summary()
         hist = model.fit(X_lidar_train,y_train, 
         validation_data=(X_lidar_validation, y_validation),epochs=num_epochs,batch_size=batch_size)
@@ -321,19 +314,3 @@ else:
 filename='my_saved_model'+'.h5'
 model.save(filename) 
 
-if args.plots:
-    import matplotlib.pyplot as plt
-    acc = hist.history['top_50_accuracy']
-    val_acc = hist.history['val_top_50_accuracy']
-
-    loss = hist.history['loss']
-    val_loss = hist.history['val_loss']
-    epochs = range(1, len(acc)+1)
-    
-    plt.xlabel('Epochs')
-    plt.ylabel('Accuracy')
-    plt.plot(epochs, acc, 'b--', label='accuracy')
-    plt.plot(epochs, acc, 'g-', label='validation accuracy')
-    plt.legend()
-
-    plt.show()
